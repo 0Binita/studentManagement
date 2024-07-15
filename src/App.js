@@ -6,6 +6,7 @@ import Home from './pages/home';
 import Form from './components/form';
 import Table from './components/denseTable';
 import Course from './components/course';
+import AddCourse from './components/courseForm';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <Route path="/form" element={<Form/>}/>
       <Route path="/table" element={<Table/>}/>
       <Route path='/course' element={<Course/>}/>
+      <Route path='/addcourse' element={<AddCourse/>}/>
     </Routes>
     </div>
     </Router>

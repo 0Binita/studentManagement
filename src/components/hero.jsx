@@ -8,7 +8,7 @@ const Hero = () =>{
                 <h1 className="text-black text-5xl font-bold pb-2 ">Welcome to the Page</h1>
                 <h3 className="text-base">Click on explore more</h3>
                 <div className="pt-3">
-                <button className="rounded bg-black text-white h-8 px-2 hover:bg-red-700"><a href="/course">Explore More</a></button>
+                <button className="rounded bg-black text-white h-8 px-2 hover:bg-red-700"><a href="/course">View Courses</a></button>
                 </div>
                 
             </div>

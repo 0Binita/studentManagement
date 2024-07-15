@@ -4,7 +4,7 @@ import React from 'react';
 const Navbar = () =>{
     return (
         <div>
-            <nav className='flex justify-between bg-slate-300 text-black h-20 pt-6 pl-12 w-full text-xl font-medium tracking-wide'>
+            <nav className='flex justify-between bg-slate-800 text-white h-16 pt-4 pl-12 w-full text-xl font-medium tracking-wide'>
                 <div>
                 <a href='/'>Logo</a>
                 </div>
@@ -12,7 +12,7 @@ const Navbar = () =>{
                 <a href='/'>Home</a>
                 <a href='/table'>Table</a>
                 <a href='/form'>Form</a>
-                <a href='/course'>Course</a>
+                <a href='/addcourse'>Course</a>
 
               
 
