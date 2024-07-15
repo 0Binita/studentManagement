@@ -28,6 +28,8 @@ const Form = () => {
             },
             body: JSON.stringify(formData),
         })
+
+        //Handling response
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -57,8 +59,7 @@ const Form = () => {
         <div className='bg-sky-200 min-h-screen flex items-center justify-center'>
             <form
                 className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md'
-                onSubmit={handleSubmit}
-            >
+                onSubmit={handleSubmit}>
                 <h1 className='font-bold text-3xl mb-6 text-center'>Form</h1>
                 <div className='mb-4'>
                     <label className='block text-gray-700 text-sm font-bold mb-2'>Full Name</label>

@@ -1,61 +1,56 @@
-import * as React from 'react';
-import { useState, useEffect } from 'react';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import React, { useState, useEffect } from 'react';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 
-// Function to create data rows
-function createData(name, email, address, dob) {
-  return { name, email, address, dob };
-}
-
-export default function DenseTable() {
-  const [rows, setRows] = useState([]);
+const Studenttable = () => {
+  const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    // Fetch data from the API
-    fetch('http://172.16.100.112:8181/api/student/fetchAllStudents')
-      .then((response) => response.json())
-      .then((data) => {
-        // Extract the 'body' array from the response
-        const students = data.body;
-        // Assuming the data is an array of student objects with fields: fullName, email, address, dateOfBirth
-        
-        setRows(students);
-      })
-      .catch((error) => {
+    const fetchStudents = async () => {
+      try {
+        const response = await fetch('http://172.25.0.105:8181/api/student/fetchAllStudents'); 
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const responseData = await response.json();
+        if (responseData.statusCode === 'OK' && responseData.statusCodeValue === 200) {
+          setStudents(responseData.body); 
+        } else {
+          throw new Error('Failed to fetch data'); 
+        }
+      } catch (error) {
         console.error('Error fetching data:', error);
-      });
-  }, []);
+      }
+    };
+
+    fetchStudents();
+  }, []); 
 
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+      <Table>
         <TableHead>
           <TableRow>
-            <TableCell>Username</TableCell>
+            <TableCell>Name</TableCell>
             <TableCell>Email</TableCell>
-            <TableCell>Address</TableCell>
+            <TableCell>Password</TableCell>
             <TableCell>Date of Birth</TableCell>
+            <TableCell>Address</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.fullName}
-              </TableCell>
-              <TableCell>{row.email}</TableCell>
-              <TableCell>{row.address}</TableCell>
-              <TableCell>{row.dateOfBirth}</TableCell>
+          {students.map((student) => (
+            <TableRow key={student.id}>
+              <TableCell>{student.fullName}</TableCell>
+              <TableCell>{student.email}</TableCell>
+              <TableCell>{student.password}</TableCell>
+              <TableCell>{student.dateOfBirth}</TableCell>
+              <TableCell>{student.address}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
-}
+};
+
+export default Studenttable;
